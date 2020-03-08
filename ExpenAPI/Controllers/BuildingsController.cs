@@ -8,16 +8,16 @@ namespace ExpenAPI.Controllers
     // Rest API for managing buildings (CRUD)
     [ApiController]
     [Route("api/[controller]")]
-    public class BuildingController : ControllerBase
+    public class BuildingsController : ControllerBase
     {
         private readonly AppDBContext _context;
 
-        public BuildingController(AppDBContext context)
+        public BuildingsController(AppDBContext context)
         {
             _context = context;
         }
 
-        // GET: /api/building
+        // GET: /api/buildings
         // Returns all buildings
         [HttpGet]
         public ActionResult<IEnumerable<Building>> GetAllBuildings()
@@ -25,7 +25,7 @@ namespace ExpenAPI.Controllers
             return _context.Buildings;
         }
 
-        // GET: api/building/{id}
+        // GET: api/buildings/{id}
         // Returns building with id sent in url
         [HttpGet("{id}")]
         public ActionResult<Building> Get(int id)
@@ -38,7 +38,7 @@ namespace ExpenAPI.Controllers
                 return building;
         }
 
-        // POST: api/building
+        // POST: api/buildings
         // Create new building sent in body
         // Returns new building with id
         [HttpPost]
@@ -49,7 +49,7 @@ namespace ExpenAPI.Controllers
             return CreatedAtAction( nameof( Get ), new Building { Id = newBuilding.Id }, newBuilding );
         }
 
-        // PUT: api/building/{id}
+        // PUT: api/buildings/{id}
         // Replaces old building values specified by id with new building sent in body
         // If building id sent in body doesn't match id in url, Bad Request is returned
         [HttpPut("{id}")]
@@ -66,7 +66,7 @@ namespace ExpenAPI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/building/id
+        // DELETE: api/buildings/id
         // Delete building with id sent in url
         // If id is not found, 404 is returned, otherwise, deleted building is returned
         [HttpDelete("{id}")]
